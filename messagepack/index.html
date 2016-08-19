@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        <meta name="author" content="François Perrad">
+        
+        <link rel="shortcut icon" href="../img/favicon.ico">
+
+	<title>API - lua-MessagePack</title>
+
+        <link href="../css/bootstrap-custom.min.css" rel="stylesheet">
+        <link href="../css/font-awesome-4.0.3.css" rel="stylesheet">
+        <link href="../css/base.css" rel="stylesheet">
+        <link rel="stylesheet" href="../css/highlight.css">
+
+        <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+        <!--[if lt IE 9]>
+            <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+            <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+        <![endif]-->
+
+        
+    </head>
+
+    <body>
+
+        <div class="navbar navbar-default navbar-fixed-top" role="navigation">
+    <div class="container">
+
+        <!-- Collapsed navigation -->
+        <div class="navbar-header">
+            
+            <!-- Expander button -->
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            
+
+            <!-- Main title -->
+            <a class="navbar-brand" href="..">lua-MessagePack</a>
+        </div>
+
+        <!-- Expanded navigation -->
+        <div class="navbar-collapse collapse">
+            
+                <!-- Main navigation -->
+                <ul class="nav navbar-nav">
+                
+                
+                    <li >
+                        <a href="..">Home</a>
+                    </li>
+                
+                
+                
+                    <li class="active">
+                        <a href="./">API</a>
+                    </li>
+                
+                
+                </ul>
+            
+
+            <ul class="nav navbar-nav navbar-right">
+                <li>
+                    <a href="#" data-toggle="modal" data-target="#mkdocs_search_modal">
+                        <i class="fa fa-search"></i> Search
+                    </a>
+                </li>
+                
+                    <li >
+                        <a rel="next" href="..">
+                            <i class="fa fa-arrow-left"></i> Previous
+                        </a>
+                    </li>
+                    <li class="disabled">
+                        <a rel="prev" >
+                            Next <i class="fa fa-arrow-right"></i>
+                        </a>
+                    </li>
+                
+                
+                    <li>
+                        <a href="https://github.com/fperrad/lua-MessagePack">
+                            
+                                <i class="fa fa-github"></i>
+                            
+                            GitHub
+                        </a>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+</div>
+
+        <div class="container">
+            
+                <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
+    <ul class="nav bs-sidenav">
+    
+        <li class="main active"><a href="#reference">Reference</a></li>
+        
+            <li><a href="#pack-data">pack( data )</a></li>
+        
+            <li><a href="#unpack-str">unpack( str )</a></li>
+        
+            <li><a href="#unpacker-src">unpacker( src )</a></li>
+        
+            <li><a href="#set_number-str">set_number( str )</a></li>
+        
+            <li><a href="#set_integer-str-deprecated">set_integer( str ) DEPRECATED</a></li>
+        
+            <li><a href="#set_array-str">set_array( str )</a></li>
+        
+            <li><a href="#set_string-str">set_string( str )</a></li>
+        
+            <li><a href="#data-conversion">Data Conversion</a></li>
+        
+            <li><a href="#extensions">Extensions</a></li>
+        
+            <li><a href="#advanced-usages">Advanced usages</a></li>
+        
+    
+        <li class="main "><a href="#examples">Examples</a></li>
+        
+    
+    </ul>
+</div></div>
+                <div class="col-md-9" role="main">
+
+<h2 id="reference">Reference</h2>
+<h4 id="pack-data">pack( data )</h4>
+<p>Serialize a <code>data</code>.</p>
+<h4 id="unpack-str">unpack( str )</h4>
+<p>Deserialize a <code>string</code>.</p>
+<h4 id="unpacker-src">unpacker( src )</h4>
+<p>Accept a <code>string</code> or a <a href="http://w3.impa.br/~diego/software/luasocket/ltn12.html#source"><code>ltn12.source</code></a>
+and returns a iterator.</p>
+<p>The iterator gives a couple of values,
+the <em>interesting</em> value is the second.</p>
+<h4 id="set_number-str">set_number( str )</h4>
+<p>Configures the behaviour of <code>pack</code>.
+The valid options are <code>'double'</code>, <code>'float'</code> and <code>'integer'</code>.
+The default is <em>usually</em> <code>'double'</code>.</p>
+<h4 id="set_integer-str-deprecated">set_integer( str ) DEPRECATED</h4>
+<p>Configures the behaviour of <code>pack</code>.
+The valid options are <code>'signed'</code> and <code>'unsigned'</code>.
+The default is <code>'unsigned'</code>.</p>
+<h4 id="set_array-str">set_array( str )</h4>
+<p>Configures the behaviour of <code>pack</code>.
+The valid options are <code>'without_hole'</code>, <code>'with_hole'</code> and <code>'always_as_map'</code>.
+The default is <code>'without_hole'</code>.</p>
+<h4 id="set_string-str">set_string( str )</h4>
+<p>Configures the behaviour of <code>pack</code>.
+The valid options are <code>'string'</code>, <code>'string_compat'</code> and <code>'binary'</code>.
+The default is <code>'string_compat'</code> in order to be compatible with old implementation.</p>
+<h3 id="data-conversion">Data Conversion</h3>
+<ul>
+<li>The following <strong>Lua</strong> types could be converted :
+<code>nil</code>, <code>boolean</code>, <code>number</code>, <code>string</code> and <code>table</code>.</li>
+<li>A <strong>Lua</strong> <code>number</code> is converted into an <strong>MessagePack</strong> <code>integer</code>
+if <code>math.floor(num) == num</code>, otherwise it is converted
+into the <strong>MessagePack</strong> <code>float</code> or <code>double</code> (see <code>set_number</code>).</li>
+<li>When a <strong>MessagePack</strong> 64 bits <code>integer</code> is converted to a <strong>Lua</strong> <code>number</code>
+it is possible that the resulting number will not represent the original number but just an approximation.</li>
+<li>A <strong>Lua</strong> <code>table</code> is converted into a <strong>MessagePack</strong> <code>array</code>
+only if <em>all</em> the keys are composed of positive integers greater than 1,
+without hole or with holes (see <code>set_array</code>).
+Otherwise it is converted into <strong>MessagePack</strong> `map.</li>
+<li>An empty <code>table</code> is always converted into a <strong>MessagePack</strong> <code>array</code>.</li>
+<li>With <code>set_array'always_as_map'</code>,
+all <strong>Lua</strong> <code>table</code> are converted into a <strong>MessagePack</strong> <code>map</code>.</li>
+<li>Lua does not allow <code>nil</code> and <code>NaN (0/0)</code> as <code>table</code> index, by default,
+the deserialization of this kind of <strong>MessagePack</strong> map skips the key/value pair.
+The value could preserved by defining the module member <code>sentinel</code> which is used as key.</li>
+<li>LIMITATION : <strong>MessagePack</strong> cannot handle data with <em>cyclic</em> reference.</li>
+</ul>
+<h3 id="extensions">Extensions</h3>
+<p>There are introduced with <strong>MessagePack</strong> specification v5.</p>
+<p>During deserialization, unknown extensions are skipped
+and evaluated as a <strong>Lua</strong> <code>nil</code>.</p>
+<p>The following example shows how to create a new module
+which extends <code>MessagePack</code> with the serialization/deserialization
+of <strong>Lua</strong> <code>function</code> (obviously,
+the emitter and receiver MUST use the same version of Lua).</p>
+<pre><code class="lua">local loadstring = loadstring or load
+local mp = require 'MessagePack'
+local EXT_FUNCTION = 7
+
+mp.packers['function'] = function (buffer, fct)
+    mp.packers['ext'](buffer, EXT_FUNCTION, assert(string.dump(fct)))
+end
+
+mp.build_ext = function (tag, data)
+    if tag == EXT_FUNCTION then
+        return assert(loadstring(data))
+    end
+end
+
+return mp
+</code></pre>
+
+<h3 id="advanced-usages">Advanced usages</h3>
+<p>The following Lua hack allows to have several instances
+of the module <code>MessagePack</code>, each one with its own settings.</p>
+<pre><code class="lua">local mp1 = require 'MessagePack'
+package.loaded['MessagePack'] = nil     -- the hack is here
+local mp2 = require 'MessagePack'
+
+mp1.set_array'without_hole'
+mp2.set_array'always_as_map'
+</code></pre>
+
+<p>When global settings are not enough,
+the following recipe allows to use a specific encoding
+for only a part of a data structure.</p>
+<pre><code class="lua">local mp = require 'MessagePack'
+mp.packers['function'] = function (buffer, fct)
+    fct(buffer)
+end
+
+local function BINARY (str)
+    return function (buffer)
+        mp.packers['binary'](buffer, str)
+    end
+end
+
+local function FLOAT (n)
+    return function (buffer)
+        mp.packers['float'](buffer, n)
+    end
+end
+
+mp.pack { 'encoded_with_global_settings', BINARY'encoded_as_binary', 42, FLOAT(42) }
+</code></pre>
+
+<h2 id="examples">Examples</h2>
+<p>Basic usage</p>
+<pre><code class="lua">local mp = require 'MessagePack'
+
+mp.set_number'float'
+mp.set_array'with_hole'
+mp.set_string'string'
+
+mpac = mp.pack(data)
+data = mp.unpack(mpac)
+
+local ltn12 = require 'ltn12'
+src = ltn12.source.file(io.open('file', 'r'))
+for _, v in mp.unpacker(src) do
+    print(v)
+end
+</code></pre></div>
+            
+        </div>
+
+        <footer class="col-md-12">
+            <hr>
+            
+            <p>Documentation built with <a href="http://www.mkdocs.org/">MkDocs</a>.</p>
+        </footer>
+
+        <script src="../js/jquery-1.10.2.min.js"></script>
+        <script src="../js/bootstrap-3.0.3.min.js"></script>
+        <script src="../js/highlight.pack.js"></script>
+        <script>var base_url = '..';</script>
+        <script data-main="../mkdocs/js/search.js" src="../mkdocs/js/require.js"></script>
+        <script src="../js/base.js"></script>
+
+        <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="Search Modal" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                        <h4 class="modal-title" id="exampleModalLabel">Search</h4>
+                    </div>
+                    <div class="modal-body">
+                        <p>
+                            From here you can search these documents. Enter
+                            your search terms below.
+                        </p>
+                        <form role="form">
+                            <div class="form-group">
+                                <input type="text" class="form-control" placeholder="Search..." id="mkdocs-search-query">
+                            </div>
+                        </form>
+                        <div id="mkdocs-search-results"></div>
+                    </div>
+                    <div class="modal-footer">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </body>
+</html>
