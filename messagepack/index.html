@@ -105,7 +105,10 @@
                 <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
     <ul class="nav bs-sidenav">
     
-        <li class="main active"><a href="#reference">Reference</a></li>
+        <li class="main active"><a href="#messagepack">MessagePack</a></li>
+        
+    
+        <li class="main "><a href="#reference">Reference</a></li>
         
             <li><a href="#pack-data">pack( data )</a></li>
         
@@ -135,7 +138,9 @@
 </div></div>
                 <div class="col-md-9" role="main">
 
-<h2 id="reference">Reference</h2>
+<h1 id="messagepack">MessagePack</h1>
+<hr />
+<h1 id="reference">Reference</h1>
 <h4 id="pack-data">pack( data )</h4>
 <p>Serialize a <code>data</code>.</p>
 <h4 id="unpack-str">unpack( str )</h4>
@@ -161,28 +166,28 @@ The default is <code>'without_hole'</code>.</p>
 <p>Configures the behaviour of <code>pack</code>.
 The valid options are <code>'string'</code>, <code>'string_compat'</code> and <code>'binary'</code>.
 The default is <code>'string_compat'</code> in order to be compatible with old implementation.</p>
-<h3 id="data-conversion">Data Conversion</h3>
+<h2 id="data-conversion">Data Conversion</h2>
 <ul>
 <li>The following <strong>Lua</strong> types could be converted :
-<code>nil</code>, <code>boolean</code>, <code>number</code>, <code>string</code> and <code>table</code>.</li>
+  <code>nil</code>, <code>boolean</code>, <code>number</code>, <code>string</code> and <code>table</code>.</li>
 <li>A <strong>Lua</strong> <code>number</code> is converted into an <strong>MessagePack</strong> <code>integer</code>
-if <code>math.floor(num) == num</code>, otherwise it is converted
-into the <strong>MessagePack</strong> <code>float</code> or <code>double</code> (see <code>set_number</code>).</li>
+  if <code>math.floor(num) == num</code>, otherwise it is converted
+  into the <strong>MessagePack</strong> <code>float</code> or <code>double</code> (see <code>set_number</code>).</li>
 <li>When a <strong>MessagePack</strong> 64 bits <code>integer</code> is converted to a <strong>Lua</strong> <code>number</code>
-it is possible that the resulting number will not represent the original number but just an approximation.</li>
+  it is possible that the resulting number will not represent the original number but just an approximation.</li>
 <li>A <strong>Lua</strong> <code>table</code> is converted into a <strong>MessagePack</strong> <code>array</code>
-only if <em>all</em> the keys are composed of positive integers greater than 1,
-without hole or with holes (see <code>set_array</code>).
-Otherwise it is converted into <strong>MessagePack</strong> `map.</li>
+  only if <em>all</em> the keys are composed of positive integers greater than 1,
+  without hole or with holes (see <code>set_array</code>).
+  Otherwise it is converted into <strong>MessagePack</strong> `map.</li>
 <li>An empty <code>table</code> is always converted into a <strong>MessagePack</strong> <code>array</code>.</li>
 <li>With <code>set_array'always_as_map'</code>,
-all <strong>Lua</strong> <code>table</code> are converted into a <strong>MessagePack</strong> <code>map</code>.</li>
+  all <strong>Lua</strong> <code>table</code> are converted into a <strong>MessagePack</strong> <code>map</code>.</li>
 <li>Lua does not allow <code>nil</code> and <code>NaN (0/0)</code> as <code>table</code> index, by default,
-the deserialization of this kind of <strong>MessagePack</strong> map skips the key/value pair.
-The value could preserved by defining the module member <code>sentinel</code> which is used as key.</li>
+  the deserialization of this kind of <strong>MessagePack</strong> map skips the key/value pair.
+  The value could preserved by defining the module member <code>sentinel</code> which is used as key.</li>
 <li>LIMITATION : <strong>MessagePack</strong> cannot handle data with <em>cyclic</em> reference.</li>
 </ul>
-<h3 id="extensions">Extensions</h3>
+<h2 id="extensions">Extensions</h2>
 <p>There are introduced with <strong>MessagePack</strong> specification v5.</p>
 <p>During deserialization, unknown extensions are skipped
 and evaluated as a <strong>Lua</strong> <code>nil</code>.</p>
@@ -207,7 +212,7 @@ end
 return mp
 </code></pre>
 
-<h3 id="advanced-usages">Advanced usages</h3>
+<h2 id="advanced-usages">Advanced usages</h2>
 <p>The following Lua hack allows to have several instances
 of the module <code>MessagePack</code>, each one with its own settings.</p>
 <pre><code class="lua">local mp1 = require 'MessagePack'
@@ -241,7 +246,7 @@ end
 mp.pack { 'encoded_with_global_settings', BINARY'encoded_as_binary', 42, FLOAT(42) }
 </code></pre>
 
-<h2 id="examples">Examples</h2>
+<h1 id="examples">Examples</h1>
 <p>Basic usage</p>
 <pre><code class="lua">local mp = require 'MessagePack'
 
@@ -263,6 +268,8 @@ end
 
         <footer class="col-md-12">
             <hr>
+            
+                <p>Copyright &copy; 2012-2016 Fran&ccedil;ois Perrad</p>
             
             <p>Documentation built with <a href="http://www.mkdocs.org/">MkDocs</a>.</p>
         </footer>
