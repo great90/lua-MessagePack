@@ -57,8 +57,43 @@
         },
         {
             "location": "/messagepack/#reference",
-            "text": "pack( data )  Serialize a  data .  unpack( str )  Deserialize a  string .  unpacker( src )  Accept a  string  or a  ltn12.source \nand returns a iterator.  The iterator gives a couple of values,\nthe  interesting  value is the second.  set_number( str )  Configures the behaviour of  pack .\nThe valid options are  'double' ,  'float'  and  'integer' .\nThe default is  usually   'double' .  set_integer( str ) DEPRECATED  Configures the behaviour of  pack .\nThe valid options are  'signed'  and  'unsigned' .\nThe default is  'unsigned' .  set_array( str )  Configures the behaviour of  pack .\nThe valid options are  'without_hole' ,  'with_hole'  and  'always_as_map' .\nThe default is  'without_hole' .  set_string( str )  Configures the behaviour of  pack .\nThe valid options are  'string' ,  'string_compat'  and  'binary' .\nThe default is  'string_compat'  in order to be compatible with old implementation.",
+            "text": "",
             "title": "Reference"
+        },
+        {
+            "location": "/messagepack/#pack-data",
+            "text": "Serialize a  data .",
+            "title": "pack( data )"
+        },
+        {
+            "location": "/messagepack/#unpack-str",
+            "text": "Deserialize a  string .",
+            "title": "unpack( str )"
+        },
+        {
+            "location": "/messagepack/#unpacker-src",
+            "text": "Accept a  string  or a  ltn12.source \nand returns a iterator.  The iterator gives a couple of values,\nthe  interesting  value is the second.",
+            "title": "unpacker( src )"
+        },
+        {
+            "location": "/messagepack/#set_number-str",
+            "text": "Configures the behaviour of  pack .\nThe valid options are  'double' ,  'float'  and  'integer' .\nThe default is  usually   'double' .",
+            "title": "set_number( str )"
+        },
+        {
+            "location": "/messagepack/#set_integer-str-deprecated",
+            "text": "Configures the behaviour of  pack .\nThe valid options are  'signed'  and  'unsigned' .\nThe default is  'unsigned' .",
+            "title": "set_integer( str ) DEPRECATED"
+        },
+        {
+            "location": "/messagepack/#set_array-str",
+            "text": "Configures the behaviour of  pack .\nThe valid options are  'without_hole' ,  'with_hole'  and  'always_as_map' .\nThe default is  'without_hole' .",
+            "title": "set_array( str )"
+        },
+        {
+            "location": "/messagepack/#set_string-str",
+            "text": "Configures the behaviour of  pack .\nThe valid options are  'string' ,  'string_compat'  and  'binary' .\nThe default is  'string_compat'  in order to be compatible with old implementation.",
+            "title": "set_string( str )"
         },
         {
             "location": "/messagepack/#data-conversion",
