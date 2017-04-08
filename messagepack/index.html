@@ -176,7 +176,7 @@ The default is <code>'string_compat'</code> in order to be compatible with old i
 <li>When a <strong>MessagePack</strong> 64 bits <code>integer</code> is converted to a <strong>Lua</strong> <code>number</code>
   it is possible that the resulting number will not represent the original number but just an approximation.</li>
 <li>A <strong>Lua</strong> <code>table</code> is converted into a <strong>MessagePack</strong> <code>array</code>
-  only if <em>all</em> the keys are composed of positive integers greater than 1,
+  only if <em>all</em> the keys are composed of strictly positive integers,
   without hole or with holes (see <code>set_array</code>).
   Otherwise it is converted into <strong>MessagePack</strong> <code>map</code>.</li>
 <li>An empty <code>table</code> is always converted into a <strong>MessagePack</strong> <code>array</code>.</li>
