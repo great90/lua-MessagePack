@@ -8,3 +8,12 @@
 /*.rock
 
 *.out
+
+/5.*
+/debian/debhelper-build-stamp
+/debian/lua-messagepack*
+/debian/lua_versions
+/debian/files
+/debian/tmp/*
+/debian/trash
+

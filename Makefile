@@ -32,6 +32,7 @@ my @files = qw{MANIFEST}; \
 while (<>) { \
     chomp; \
     next if m{^\.}; \
+    next if m{^debian/}; \
     next if m{^rockspec/}; \
     push @files, $$_; \
 } \
@@ -83,6 +84,14 @@ rock:
 	luarocks pack rockspec/lua-messagepack-$(VERSION)-$(REV).rockspec
 	luarocks pack rockspec/lua-messagepack-lua53-$(VERSION)-$(REV).rockspec
 
+deb:
+	echo "lua-messagepack ($(shell git describe --dirty)) unstable; urgency=medium" >  debian/changelog
+	echo ""                         >> debian/changelog
+	echo "  * UNRELEASED"           >> debian/changelog
+	echo ""                         >> debian/changelog
+	echo " -- $(shell git config --get user.name) <$(shell git config --get user.email)>  $(shell date -R)" >> debian/changelog
+	fakeroot debian/rules clean binary
+
 check: test
 
 test:
@@ -114,5 +123,5 @@ clean:
 
 realclean: clean
 
-.PHONY: test rockspec CHANGES
+.PHONY: test rockspec deb debclean CHANGES
 
