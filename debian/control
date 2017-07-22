@@ -1,0 +1,23 @@
+Source: lua-messagepack
+Section: interpreters
+Priority: optional
+Maintainer: Jason Pleau <jason@jpleau.ca>
+Build-Depends: debhelper (>= 9), dh-lua
+Standards-Version: 4.0.0
+Homepage: http://fperrad.github.io/lua-MessagePack/
+Vcs-Git: https://anonscm.debian.org/cgit/pkg-lua/lua-messagepack.git
+Vcs-Browser: https://anonscm.debian.org/cgit/pkg-lua/lua-messagepack.git
+
+Package: lua-messagepack
+Architecture: all
+Depends: ${misc:Depends}
+Provides: ${lua:Provides}
+XB-Lua-Versions: ${lua:Versions}
+Description: pure Lua implementation of MessagePack
+ Lua module that provides an API to convert Lua data structures to MessagePack,
+ and vice versa.
+ .
+ MessagePack is an efficient binary serialization format.
+ .
+ It lets you exchange data among multiple languages like JSON but it's faster,
+ and smaller.
